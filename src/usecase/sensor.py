@@ -7,8 +7,11 @@ class Sensor_use_case():
 
     def post_sensor(self, data) -> dict:
         sensor = Sensor(*data)
-        result = self.repository.create_sensor(sensor)
+        result = self.repository.post_sensor(sensor)
         return result
+    
+    def post_sensor_by_file(self, file):
+        sensors = self.repository.post_sensor_by_file(file)
 
     def get_sensor(self):
         sensors = self.repository.get_sensors()
