@@ -1,3 +1,10 @@
+from fastapi import UploadFile
 
-def read_file():
-    print('hello')
+
+async def read_file(file: UploadFile):
+    try:
+        content = await file.read()
+        print(content)
+        return content
+    except:
+        raise('Error reading file')

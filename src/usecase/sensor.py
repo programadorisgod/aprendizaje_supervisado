@@ -9,7 +9,7 @@ class Sensor_use_case():
         sensor = Sensor(*data)
         result = self.repository.post_sensor(sensor)
         return result
-    
+
     def post_sensor_by_file(self, file):
         sensors = self.repository.post_sensor_by_file(file)
 

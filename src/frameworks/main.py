@@ -16,7 +16,7 @@ usecase_sensor = Sensor_use_case(repository)
 sensor_controller = Sensor_controller(usecase_sensor)
 
 
-app.include_router(create_router_user(repository))
+app.include_router(create_router_user(sensor_controller))
 
 
 if __name__ == "__main__":

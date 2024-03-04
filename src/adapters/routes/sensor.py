@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, UploadFile
 from src.entity.models.sensor import SensorModel
 
 sensor_route = APIRouter()
@@ -16,4 +16,10 @@ def create_router_user(sensor_controller):
 
         return sensor_controller.post_sensor(sensor)
 
+    @sensor_route.post(f"{BASE_URL}/upload_file", tags=["sensors"])
+    async def post_sensor_by_file(file:UploadFile):
+         return sensor_controller.post_sensor_by_file(file)
+    
+
+    
     return sensor_route
