@@ -18,7 +18,7 @@ def create_router_user(sensor_controller):
 
     @sensor_route.post(f"{BASE_URL}/upload_file", tags=["sensors"])
     async def post_sensor_by_file(file:UploadFile):
-         return sensor_controller.post_sensor_by_file(file)
+         return await sensor_controller.post_sensor_by_file(file)
     
 
     

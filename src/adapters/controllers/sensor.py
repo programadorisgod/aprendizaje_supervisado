@@ -1,5 +1,5 @@
 from src.adapters.utils.read_file import read_file
-from fastapi import UploadFile
+from fastapi import UploadFile, HTTPException
 
 
 class Sensor_controller:
@@ -7,17 +7,31 @@ class Sensor_controller:
         self.usecase_sensor = usecase_sensor
 
     def post_sensor(self, data):
-        result = self.usecase_sensor.post_sensor(data)
-        return result
-
-    def post_sensor_by_file(self, file: UploadFile):
         try:
-            sensors = read_file(file)
-            print(sensors)
-        except ValueError as e:
-            return f"Internal server Error: {e}"
+            result = self.usecase_sensor.post_sensor(data)
+            return result
+        except Exception as error:
+            raise HTTPException(
+                status_code=500, detail=f"Internal server Error: {str(error)}")
+
+    async def post_sensor_by_file(self, file: UploadFile):
+        try:
+            sensors = await read_file(file)
+            result = self.usecase_sensor.post_sensor_by_file(sensors)
+            return result
+        except Exception as error:
+            raise HTTPException(
+                status_code=500, detail={f"Internal server Error: {str(error)}"})
 
     def get_sensors(self):
-        result = self.usecase_sensor.get_sensor()
+        try:
+            result = self.usecase_sensor.get_sensor()
 
-        return result
+            if len(result) == 0:
+                raise HTTPException(
+                    status_code=404, detail='Sensors not found')
+
+            return result
+        except Exception as error:
+            raise HTTPException(status_code=500, detail={
+                                f"Internal server Error: {str(error)}"})
