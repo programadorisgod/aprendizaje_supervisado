@@ -10,6 +10,10 @@ def create_router_user(sensor_controller):
     @sensor_route.get(BASE_URL, tags=["sensors"])
     async def get_sensors():
         return sensor_controller.get_sensors()
+    
+    @sensor_route.get(f"{BASE_URL}/threshold_and_weights", tags=["sensors"])
+    async def get_threshold_and_weights():
+        return sensor_controller.get_threshold_and_weights()
 
     @sensor_route.post(BASE_URL, tags=["sensors"])
     async def post_sensor(sensor: SensorModel):

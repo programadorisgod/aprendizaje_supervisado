@@ -21,17 +21,22 @@ class Sensor_controller:
             return result
         except Exception as error:
             raise HTTPException(
-                status_code=500, detail={f"Internal server Error: {str(error)}"})
+                status_code=500, detail=f"Internal server Error: {str(error)}")
 
     def get_sensors(self):
         try:
-            result = self.usecase_sensor.get_sensor()
-
-            if len(result) == 0:
-                raise HTTPException(
-                    status_code=404, detail='Sensors not found')
-
+            result = self.usecase_sensor.get_sensors()
             return result
         except Exception as error:
-            raise HTTPException(status_code=500, detail={
-                                f"Internal server Error: {str(error)}"})
+            raise HTTPException(
+                status_code=500, detail=f"Internal server Error: {str(error)}")
+
+    def get_threshold_and_weights(self):
+        try:
+            result = self.usecase_sensor.get_threshold_and_weights()
+
+            return result
+
+        except Exception as error:
+            raise HTTPException(
+                status_code=500, detail=f"Internal server Error: {str(error)}")
