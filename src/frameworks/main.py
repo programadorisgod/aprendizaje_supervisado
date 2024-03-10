@@ -1,11 +1,26 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from src.adapters.routes.sensor import create_router_user
 from src.adapters.repository.sensor import Sensor_data_repository_mongo
 from src.adapters.database.conexion_database import Database
 from src.usecase.sensor import Sensor_use_case
 from src.adapters.controllers.sensor import Sensor_controller
 
+
 app = FastAPI()
+
+origins: list[str] = [
+    'http://localhost:5173'
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 db_instace = Database().get_instance()
 

@@ -1,5 +1,6 @@
 from src.entity.sensor import Sensor
 from src.adapters.utils.init_threshold_and_weights import init_threshold_and_weights
+from src.adapters.utils.counting_input_output_and_patterns import counting_input_output_and_patterns
 
 
 class Sensor_use_case():
@@ -25,3 +26,10 @@ class Sensor_use_case():
         sensors: list[Sensor] | Exception = self.get_sensors()
         threshold_and_weights = init_threshold_and_weights(sensors)
         return threshold_and_weights
+
+    def get_input_output_and_patterns(self):
+        sensors: list[Sensor] | Exception = self.get_sensors()
+
+        result = counting_input_output_and_patterns(sensors)
+
+        return result

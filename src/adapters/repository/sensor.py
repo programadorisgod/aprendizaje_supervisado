@@ -15,6 +15,8 @@ class Sensor_data_repository_mongo:
 
     def post_sensor_by_file(self, data) -> dict:
         try:
+            self.collection.delete_many({})
+            
             self.collection.insert_many(data)
             return {"message": "data inserted"}
         except:

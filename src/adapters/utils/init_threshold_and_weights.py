@@ -1,11 +1,14 @@
 from src.entity.sensor import Sensor
+from src.adapters.utils.counting_input_output_and_patterns import counting_input_output_and_patterns
 import random
 
 
 def init_threshold_and_weights(sensors: list[Sensor]) -> list:
-    m: int = 0
-    n: int = 0
+
+    m, n, _ = counting_input_output_and_patterns(sensors)
+    
     threshold_and_weights: list = []
+
     for idx, dict in enumerate(sensors):
         for key, value in dict.items():
             if f's{idx}' in key.lower():

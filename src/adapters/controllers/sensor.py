@@ -17,7 +17,9 @@ class Sensor_controller:
     async def post_sensor_by_file(self, file: UploadFile):
         try:
             sensors = await read_file(file)
+
             result = self.usecase_sensor.post_sensor_by_file(sensors)
+            
             return result
         except Exception as error:
             raise HTTPException(
@@ -26,6 +28,7 @@ class Sensor_controller:
     def get_sensors(self):
         try:
             result = self.usecase_sensor.get_sensors()
+
             return result
         except Exception as error:
             raise HTTPException(
@@ -37,6 +40,15 @@ class Sensor_controller:
 
             return result
 
+        except Exception as error:
+            raise HTTPException(
+                status_code=500, detail=f"Internal server Error: {str(error)}")
+
+    def get_input_output_and_patterns(self):
+        try:
+            result = self.usecase_sensor.get_input_output_and_patterns()
+
+            return result
         except Exception as error:
             raise HTTPException(
                 status_code=500, detail=f"Internal server Error: {str(error)}")
