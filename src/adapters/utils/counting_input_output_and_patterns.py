@@ -6,11 +6,20 @@ def counting_input_output_and_patterns(sensors: list[Sensor]) -> list:
 
     m: int = 0
     n: int = 0
-    for idx, dict in enumerate(sensors):
-        for key, value in dict.items():
-            if f's{idx}' in key.lower():
-                m += 1
-            if f'yd{idx}' in key.lower():
-                n += 1
+    headers = []
+    current_letter = None
+    first_sensor = sensors[0]
+
+    for key, value in first_sensor.items():
+        if key.lower() != '_id':
+            headers.append(key.lower())
+
+    for header in headers:
+        if current_letter is None or header[0] == current_letter:
+            current_letter = header[0]
+            m += 1
+        else:
+            n += 1
+
     input_output_patrons.append([m, n, len(sensors)])
     return input_output_patrons

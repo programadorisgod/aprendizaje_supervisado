@@ -6,19 +6,20 @@ async def read_file(file: UploadFile):
         content = await file.read()
         content = content.decode('utf-8')
         lines = content.split('\n')
+        headers = lines[0].strip().split(' ')
+
         sensors = []
 
         for idx, line in enumerate(lines):
-            parts = line.split(' ')
-            if len(parts) >= 5 and idx != 0:
-                sensors.append({
-                    's1': parts[0],
-                    's2': parts[1],
-                    's3': parts[2],
-                    'yd1': parts[3],
-                    'yd2': parts[4]
-                })
 
+            if idx != 0 and line.strip():
+                parts = line.split('  ')
+                sensor = {}
+                for header, part in zip(headers, parts):
+                    sensor[header] = part
+
+                sensors.append(sensor)
         return sensors
-    except:
+    except Exception as e:
+        print(e)
         raise Exception('Error reading file')
