@@ -13,6 +13,7 @@ app = FastAPI()
 origins: list[str] = [
     'http://localhost:5173'
 ]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
