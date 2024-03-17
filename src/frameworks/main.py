@@ -11,7 +11,7 @@ from src.adapters.controllers.sensor import Sensor_controller
 app = FastAPI()
 
 origins: list[str] = [
-    'http://localhost:5173'
+    '*'
 ]
 
 app.add_middleware(
