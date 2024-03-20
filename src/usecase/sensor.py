@@ -22,7 +22,7 @@ class Sensor_use_case():
     def get_sensors(self):
         sensors: list[Sensor] | Exception = self.repository.get_sensors()
         result: list = couting_input_output(sensors)
-        
+
         return result
 
     def get_threshold_and_weights(self) -> list:
@@ -31,8 +31,7 @@ class Sensor_use_case():
         return threshold_and_weights
 
     def get_input_output_and_patterns(self):
-        sensors: list[Sensor] | Exception = self.get_sensors()
-
+        sensors: list[Sensor] | Exception = self.repository.get_sensors()
         result = counting_input_output_and_patterns(sensors)
 
         return result
