@@ -30,7 +30,6 @@ def couting_input_output(sensors: list[Sensor]) -> list:
                     inp.append(value)
 
                 elif key in outputs:
-                    print('entro')
                     out.append(value)
 
         database.append((inp, out))
