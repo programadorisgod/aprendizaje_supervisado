@@ -1,5 +1,7 @@
 from fastapi import APIRouter, UploadFile
 from src.entity.models.sensor import SensorModel
+from src.entity.models.sensor import FileModel
+
 
 sensor_route = APIRouter()
 
@@ -28,4 +30,12 @@ def create_router_user(sensor_controller):
     async def post_sensor_by_file(file: UploadFile):
         return await sensor_controller.post_sensor_by_file(file)
 
+    @sensor_route.post(f"{BASE_URL}/file", tags=["sensors"])
+    async def post_weights_and_threshold(file: FileModel):
+        return sensor_controller.post_weights_and_threshold(file)
+
+    @sensor_route.get(f"{BASE_URL}/simulation", tags=["sensors"])
+    async def get_weights_and_treshold():
+        return sensor_controller.get_weights_and_treshold()
+    
     return sensor_route

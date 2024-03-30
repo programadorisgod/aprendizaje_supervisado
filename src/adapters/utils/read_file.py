@@ -9,7 +9,6 @@ async def read_file(file: UploadFile):
         headers = lines[0].strip().split(' ')
 
         sensors = []
-        print('cabeceras', headers)
 
         for idx, line in enumerate(lines):
 
@@ -18,11 +17,9 @@ async def read_file(file: UploadFile):
 
                 sensor = {}
                 for header, part in zip(headers, parts):
-                    print(part, 'part')
                     sensor[header] = part
 
                 sensors.append(sensor)
         return sensors
-    except Exception as e:
-        print(e)
+    except:
         raise Exception('Error reading file')

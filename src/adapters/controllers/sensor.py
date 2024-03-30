@@ -14,12 +14,28 @@ class Sensor_controller:
             raise HTTPException(
                 status_code=500, detail=f"Internal server Error: {str(error)}")
 
+    def post_weights_and_threshold(self, file):
+        try:
+            result = self.usecase_sensor.post_weights_and_threshold(file)
+            return result
+        except Exception as error:
+            raise HTTPException(
+                status_code=500, detail=f"Internal server Error: {str(error)}")
+
     async def post_sensor_by_file(self, file: UploadFile):
         try:
             sensors = await read_file(file)
 
             result = self.usecase_sensor.post_sensor_by_file(sensors)
 
+            return result
+        except Exception as error:
+            raise HTTPException(
+                status_code=500, detail=f"Internal server Error: {str(error)}")
+
+    def get_weights_and_treshold(self):
+        try:
+            result = self.usecase_sensor.get_weights_and_treshold()
             return result
         except Exception as error:
             raise HTTPException(
@@ -41,7 +57,6 @@ class Sensor_controller:
             return result
 
         except Exception as error:
-            print(error)
             raise HTTPException(
                 status_code=500, detail=f"Internal server Error: {str(error)}")
 

@@ -7,3 +7,8 @@ class SensorModel(BaseModel):
     s3: int
     yd1: int
     yd2: int
+
+
+class FileModel(BaseModel):
+    weights: list[list[float]]
+    thresholds: list[float]
