@@ -1,6 +1,8 @@
+# Variables de entorno
+.env
+
 # Entorno virtual
 modelo_a_s/
-
 
 # Archivos de caché de Python
 __pycache__/
