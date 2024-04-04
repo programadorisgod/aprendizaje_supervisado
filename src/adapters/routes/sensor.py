@@ -8,7 +8,7 @@ sensor_route = APIRouter()
 BASE_URL = '/api/v1/sensors'
 
 
-def create_router_user(sensor_controller):
+def create_router_sensor(sensor_controller):
     @sensor_route.get(BASE_URL, tags=["sensors"])
     async def get_sensors():
         return sensor_controller.get_sensors()
@@ -37,5 +37,5 @@ def create_router_user(sensor_controller):
     @sensor_route.get(f"{BASE_URL}/simulation", tags=["sensors"])
     async def get_weights_and_treshold():
         return sensor_controller.get_weights_and_treshold()
-    
+
     return sensor_route

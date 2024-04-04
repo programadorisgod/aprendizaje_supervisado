@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from src.adapters.routes.sensor import create_router_user
+from src.adapters.routes.sensor import create_router_sensor
 from src.adapters.repository.sensor import Sensor_data_repository_mongo
 from src.adapters.database.conexion_database import Database
 from src.usecase.sensor import Sensor_use_case
@@ -32,7 +32,7 @@ usecase_sensor = Sensor_use_case(repository)
 sensor_controller = Sensor_controller(usecase_sensor)
 
 
-app.include_router(create_router_user(sensor_controller))
+app.include_router(create_router_sensor(sensor_controller))
 
 
 if __name__ == "__main__":
