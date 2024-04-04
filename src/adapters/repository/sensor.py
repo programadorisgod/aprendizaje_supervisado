@@ -6,7 +6,7 @@ class Sensor_data_repository_mongo:
         self.db = db_instace
         self.collection = self.db['sensors']
 
-    def post_sensor(self, data) -> dict:
+    def post_sensor(self, data) -> dict | Exception:
         try:
             result = self.collection.insert_one(data.__dict__)
             return {"_id": str(result.inserted_id)}
@@ -22,7 +22,7 @@ class Sensor_data_repository_mongo:
         except:
             raise Exception('Error inserting data')
 
-    def get_sensors(self) -> list[Sensor] | list | Exception:
+    def get_sensors(self) -> list[Sensor] | Exception:
 
         cursor = self.collection.find()
         result = [{**doc, "_id": str(doc["_id"])} for doc in cursor]

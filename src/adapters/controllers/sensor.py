@@ -16,7 +16,6 @@ class Sensor_controller:
 
     def post_weights_and_threshold(self, file):
         try:
-            print(file, 'recibo')
             result = self.usecase_sensor.post_weights_and_threshold(file)
             return result
         except Exception as error:

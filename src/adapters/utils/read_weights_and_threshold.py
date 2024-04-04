@@ -9,7 +9,6 @@ def read_weights_and_treshold() -> dict:
     values_weights = firts_line.split(' ')
     values_thresholds = second_line.split(' ')
 
-    print(values_weights)
     if len(values_weights) < 3:
         for w in values_weights:
               weights.append([float(w)])
