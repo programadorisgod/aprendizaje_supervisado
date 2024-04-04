@@ -1,1 +1,12 @@
-pyvenv.cfg
+# Entorno virtual
+modelo_a_s/
+
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Directorio de Docker
+Dockerfile
+docker-compose.yml
