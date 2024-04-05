@@ -11,7 +11,7 @@ def read_weights_and_treshold() -> dict:
 
     if len(values_weights) < 3:
         for w in values_weights:
-              weights.append([float(w)])
+            weights.append([float(w)])
     else:    
         for i in range(0, len(values_weights), 2):
             weights.append([float(values_weights[i]), float(values_weights[i+1])])

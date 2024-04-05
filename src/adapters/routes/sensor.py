@@ -23,7 +23,6 @@ def create_router_sensor(sensor_controller):
 
     @sensor_route.post(BASE_URL, tags=["sensors"])
     async def post_sensor(sensor: SensorModel):
-
         return sensor_controller.post_sensor(sensor)
 
     @sensor_route.post(f"{BASE_URL}/upload-file", tags=["sensors"])

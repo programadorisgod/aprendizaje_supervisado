@@ -69,5 +69,5 @@ if __name__ == '__main__':
             "yd2": "1"
         }
     ]
-
+    
     init_threshold_and_weights(listx)
