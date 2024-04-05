@@ -13,6 +13,8 @@ class Database():
         from dotenv import load_dotenv
         from pymongo import MongoClient
         load_dotenv()
+        if not os.getenv('MONGO_URI'):
+            raise Exception('unable to connect to the database')
 
         self.client = MongoClient(os.getenv('MONGO_URI'))
 

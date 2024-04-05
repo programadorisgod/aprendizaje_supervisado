@@ -29,6 +29,7 @@ class Sensor_data_repository_mongo:
 
         if len(result) == 0:
             raise Exception('Sensors not found')
+        print('enntro')
         try:
             return result
         except:

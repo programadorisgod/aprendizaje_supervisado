@@ -1,5 +1,5 @@
 from src.entity.sensor import Sensor
-from adapters.utils.error_correction.init_threshold_and_weights import init_threshold_and_weights
+from src.adapters.utils.error_correction.init_threshold_and_weights import init_threshold_and_weights
 from src.adapters.utils.counting_input_output_and_patterns import counting_input_output_and_patterns
 from src.adapters.utils.count_input_ouputs import couting_input_output
 from src.adapters.utils.read_weights_and_threshold import read_weights_and_treshold
