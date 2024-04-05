@@ -72,7 +72,7 @@ def init_threshold_and_weights(sensors: list[Sensor], layerValues: list[int] ) -
                         f"threshold_{index+1}": threshold
                     })
         
-        return print(threshold_and_weights)
+        return threshold_and_weights
     except Exception as error: 
         print(error, 'error')
 
