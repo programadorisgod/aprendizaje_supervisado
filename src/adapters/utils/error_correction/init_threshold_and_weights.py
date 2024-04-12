@@ -1,12 +1,12 @@
-from src.entity.sensor import Sensor
+from src.entity.patron import Patron
 from src.adapters.utils.counting_input_output_and_patterns import counting_input_output_and_patterns
 import random
 
 
-def init_threshold_and_weights(sensors: list[Sensor]) -> list:
+def init_threshold_and_weights(patrons: list[Patron]) -> list:
 
     try:
-        result = counting_input_output_and_patterns(sensors)
+        result = counting_input_output_and_patterns(patrons)
         inner_list = result[0]
         m, n, _ = inner_list
 

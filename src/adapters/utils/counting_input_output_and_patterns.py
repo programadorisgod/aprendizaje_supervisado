@@ -1,16 +1,16 @@
-from src.entity.sensor import Sensor
+from src.entity.patron import Patron
 
 
-def counting_input_output_and_patterns(sensors: list[Sensor]) -> list:
+def counting_input_output_and_patterns(patrons: list[Patron]) -> list:
     input_output_patrons: list = []
 
     m: int = 0
     n: int = 0
     headers = []
     current_letter = None
-    first_sensor = sensors[0]
+    first_patron = patrons[0]
 
-    for key, value in first_sensor.items():
+    for key, value in first_patron.items():
         if key.lower() != '_id':
             headers.append(key.lower())
 
@@ -21,5 +21,5 @@ def counting_input_output_and_patterns(sensors: list[Sensor]) -> list:
         else:
             n += 1
 
-    input_output_patrons.append([m, n, len(sensors)])
+    input_output_patrons.append([m, n, len(patrons)])
     return input_output_patrons

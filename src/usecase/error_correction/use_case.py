@@ -1,4 +1,4 @@
-from src.entity.sensor import Sensor
+from src.entity.patron import Patron
 from src.adapters.utils.error_correction.init_threshold_and_weights import init_threshold_and_weights
 from src.adapters.utils.counting_input_output_and_patterns import counting_input_output_and_patterns
 from src.adapters.utils.count_input_ouputs import couting_input_output
@@ -6,20 +6,20 @@ from src.adapters.utils.read_weights_and_threshold import read_weights_and_tresh
 import os
 
 
-class Sensor_use_case():
+class Error_correction_use_case():
     def __init__(self, repository) -> None:
         self.repository = repository
 
-    def post_sensor(self, data) -> dict:
+    def post_patron(self, data) -> dict:
         data_dic = {item[0]: item[1] for item in data}
-        sensor: Sensor = Sensor(**data_dic)
-        result: dict | Exception = self.repository.post_sensor(sensor)
+        newPatron: Patron = Patron(**data_dic)
+        result: dict | Exception = self.repository.post_patron(newPatron)
         return result
 
-    def post_sensor_by_file(self, sensors) -> dict:
-        sensors: dict | Exception = self.repository.post_sensor_by_file(
-            sensors)
-        return sensors
+    def post_patrons_by_file(self, patrons) -> dict:
+        result: dict | Exception = self.repository.post_patrons_by_file(
+            patrons)
+        return result
 
     def post_weights_and_threshold(self, file) -> dict | Exception:
         try:
@@ -47,19 +47,19 @@ class Sensor_use_case():
 
             raise Exception('Error reading file')
 
-    def get_sensors(self):
-        sensors: list[Sensor] | Exception = self.repository.get_sensors()
-        result: list = couting_input_output(sensors)
+    def get_patrons(self):
+        patrons: list[Patron] | Exception = self.repository.get_patrons()
+        result: list = couting_input_output(patrons)
 
         return result
 
     def get_threshold_and_weights(self) -> list:
-        sensors: list[Sensor] | Exception = self.get_sensors()
-        threshold_and_weights = init_threshold_and_weights(sensors)
+        patrons: list[Patron] | Exception = self.get_patrons()
+        threshold_and_weights = init_threshold_and_weights(patrons)
         return threshold_and_weights
 
     def get_input_output_and_patterns(self):
-        sensors: list[Sensor] | Exception = self.repository.get_sensors()
-        result = counting_input_output_and_patterns(sensors)
+        patrons: list[Patron] | Exception = self.repository.get_patrons()
+        result = counting_input_output_and_patterns(patrons)
 
         return result

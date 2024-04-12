@@ -1,16 +1,16 @@
-from src.entity.sensor import Sensor
+from src.entity.patron import Patron
 
 
-def couting_input_output(sensors: list[Sensor]) -> list:
+def couting_input_output(patrons: list[Patron]) -> list:
 
     keys = []
     current_leter = None
     inputs: list = []
     outputs: list = []
-    firts_sensor = sensors[0]
+    firts_patron = patrons[0]
     database: list = []
 
-    for key, value in firts_sensor.items():
+    for key, value in firts_patron.items():
         if key.lower() != '_id':
             keys.append(key)
 
@@ -21,10 +21,10 @@ def couting_input_output(sensors: list[Sensor]) -> list:
         else:
             outputs.append(key)
 
-    for sensor in sensors:
+    for patron in patrons:
         inp: list = []
         out: list = []
-        for key, value in sensor.items():
+        for key, value in patron.items():
             if key != '_id':
                 if key in inputs:
                     inp.append(value)

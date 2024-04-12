@@ -8,18 +8,18 @@ async def read_file(file: UploadFile):
         lines = content.split('\n')
         headers = lines[0].strip().split(' ')
 
-        sensors = []
+        patterns = []
 
         for idx, line in enumerate(lines):
 
             if idx != 0 and line.strip():
                 parts = line.strip().split(' ')
 
-                sensor = {}
+                pattern = {}
                 for header, part in zip(headers, parts):
-                    sensor[header] = part
+                    pattern[header] = part
 
-                sensors.append(sensor)
-        return sensors
+                patterns.append(pattern)
+        return patterns
     except:
         raise Exception('Error reading file')

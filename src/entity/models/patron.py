@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class SensorModel(BaseModel):
+class PatronModel(BaseModel):
     s1: int
     s2: int
     s3: int
@@ -12,3 +12,7 @@ class SensorModel(BaseModel):
 class FileModel(BaseModel):
     weights: list[list[float]]
     thresholds: list[float]
+
+
+class LayerValues(BaseModel):
+    layerValues: list[int]
