@@ -58,8 +58,8 @@ def init_threshold_and_weights(patrons: list[Patron], layerValues: list[int]) ->
                     threshold_list.append(
                         threshold
                     )
-                else:
-
+                elif value != 0:
+                
                     weight_matrix: list[list[float]] = [
                         [0.0 for _ in range(value-1)] for _ in range(value)]
 
@@ -122,6 +122,6 @@ if __name__ == '__main__':
         }
     ]
 
-    layers = [3, 5, 0]
+    layers = [3, 0, 0]
 
-    init_threshold_and_weights(listx, layers)
+    print(init_threshold_and_weights(listx, layers))
