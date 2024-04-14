@@ -9,79 +9,35 @@ def init_threshold_and_weights(patrons: list[Patron], layerValues: list[int]) ->
         result = counting_input_output_and_patterns(patrons)
         inner_list = result[0]
         inputs, ouputs, _ = inner_list
+        C1, C2, C3 = layerValues
 
         weights: list = []
         threshold_list: list = []
 
-        for index, value in enumerate(layerValues):
+        if layerValues[0] != 0: 
+            data = [inputs, C1, ouputs]
+        if layerValues[1] != 0:
+            data = [inputs, C1, C2, ouputs]
+        if layerValues[2] != 0:
+            data = [inputs, C1, C2, C3, ouputs]
 
-            if index == 0 and value != 0:
+        for index, value in enumerate(data[:-1]):
+            weight_matrix: list[list[float]] = [[0.0 for _ in range(value)] for _ in range(data[index+1])]
 
-                weight_matrix: list[list[float]] = [
-                    [0.0 for _ in range(inputs)] for _ in range(value)]
+            threshold: list[float] = [0.0 for _ in range(data[index+1])]
 
-                threshold: list[float] = [0.0 for _ in range(value)]
+            for i in range(data[index+1]):
+                for j in range(value):
+                    weight_matrix[i][j] = round(random.uniform(-1, 1), 1)
 
-                for i in range(value):
-                    for j in range(inputs):
-                        weight_matrix[i][j] = round(random.uniform(-1, 1), 1)
+            for k in range(data[index+1]):
+                threshold[k] = round(random.uniform(-1, 1), 1)
 
-                for k in range(value):
-                    threshold[k] = round(random.uniform(-1, 1), 1)
+            weights.append(weight_matrix)
+            threshold_list.append(threshold)
 
-                weights.append(
-                    weight_matrix,
-                )
-                threshold_list.append(
-                    threshold
-                )
-            else:
-
-                if index == len(layerValues) - 1 and value != 0:
-
-                    weight_matrix: list[list[float]] = [
-                        [0.0 for _ in range(value)] for _ in range(ouputs)]
-
-                    threshold: list[float] = [0.0 for _ in range(ouputs)]
-
-                    for i in range(ouputs):
-                        for j in range(value):
-                            weight_matrix[i][j] = round(
-                                random.uniform(-1, 1), 1)
-
-                    for k in range(ouputs):
-                        threshold[k] = round(random.uniform(-1, 1), 1)
-
-                    weights.append(
-                        weight_matrix,
-                    )
-                    threshold_list.append(
-                        threshold
-                    )
-                elif value != 0:
-                
-                    weight_matrix: list[list[float]] = [
-                        [0.0 for _ in range(value-1)] for _ in range(value)]
-
-                    threshold: list[float] = [0.0 for _ in range(value)]
-
-                    for i in range(value):
-                        for j in range(value-1):
-                            weight_matrix[i][j] = round(
-                                random.uniform(-1, 1), 1)
-
-                    for k in range(value):
-                        threshold[k] = round(random.uniform(-1, 1), 1)
-
-                    weights.append(
-                        weight_matrix,
-                    )
-                    threshold_list.append(
-                        threshold
-                    )
-
-        return {f"pesos": weights,
-                f"umbrales": threshold_list}
+        return {f"pesos": weights, f"umbrales": threshold_list}
+    
     except Exception as error:
         print(error, 'error')
 
@@ -122,6 +78,6 @@ if __name__ == '__main__':
         }
     ]
 
-    layers = [3, 0, 0]
+    layers = [3, 2, 2]
 
     print(init_threshold_and_weights(listx, layers))
