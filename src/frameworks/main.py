@@ -14,9 +14,7 @@ from src.adapters.routes.backpropagation.route import create_router_backpropagat
 
 app = FastAPI()
 
-origins: list[str] = [
-    '*'
-]
+origins: list[str] = ['*']
 
 app.add_middleware(
     CORSMiddleware,
