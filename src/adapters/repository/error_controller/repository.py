@@ -25,11 +25,17 @@ class Repository_error_correction:
     def get_patrons(self) -> list[Patron] | Exception:
 
         cursor = self.collection.find()
-        result = [{**doc, "_id": str(doc["_id"])} for doc in cursor]
+        result = []
+        for doc in cursor:
+            doc['_id'] = str(doc['_id'])
+            for key, value in doc.items():
+                if isinstance(value, str) and value.isdigit():
+                    doc[key] = int(value)
+            result.append(doc)
 
         if len(result) == 0:
             raise Exception('Sensors not found')
-        print('enntro')
+
         try:
             return result
         except:
