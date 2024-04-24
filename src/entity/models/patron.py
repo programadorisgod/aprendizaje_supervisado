@@ -16,3 +16,12 @@ class FileModel(BaseModel):
 
 class LayerValues(BaseModel):
     layerValues: list[int]
+
+class NetworkLayer(BaseModel):
+    neurons: int
+    activationFunction: str
+
+class Configuration(BaseModel):
+    weights: list[list[list[float]]]
+    thresholds: list[list[float]] 
+    networkLayers: list[NetworkLayer]
