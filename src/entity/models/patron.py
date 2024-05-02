@@ -17,11 +17,14 @@ class FileModel(BaseModel):
 class LayerValues(BaseModel):
     layerValues: list[int]
 
+
 class NetworkLayer(BaseModel):
     neurons: int
     activationFunction: str
 
+
 class Configuration(BaseModel):
     weights: list[list[list[float]]]
-    thresholds: list[list[float]] 
+    thresholds: list[list[float]]
+    bpType: int
     networkLayers: list[NetworkLayer]
