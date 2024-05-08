@@ -6,6 +6,7 @@ class Controller_backpropagation:
         self.usecase_backpropagation = usecase_backpropagation
 
     def get_weights_and_threshold(self, data):
+        print(data)
         layerValues = data.layerValues
         if not layerValues or not isinstance(layerValues, list):
             raise TypeError("Layer values must be a list")

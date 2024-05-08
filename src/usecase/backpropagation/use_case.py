@@ -11,6 +11,7 @@ class Backpropagation_use_case:
         self.repository = repository
 
     def get_weights_and_threshold(self, layerValues):
+        print(layerValues, 'usecase')
         patrons = self.repository.get_patrons()
         result = init_threshold_and_weights(patrons, layerValues)
         return result

@@ -14,7 +14,7 @@ def init_threshold_and_weights(patrons: list[Patron], layerValues: list[int]) ->
         weights: list = []
         threshold_list: list = []
 
-        if layerValues[0] != 0: 
+        if layerValues[0] != 0:
             data = [inputs, C1, ouputs]
         if layerValues[1] != 0:
             data = [inputs, C1, C2, ouputs]
@@ -22,7 +22,8 @@ def init_threshold_and_weights(patrons: list[Patron], layerValues: list[int]) ->
             data = [inputs, C1, C2, C3, ouputs]
 
         for index, value in enumerate(data[:-1]):
-            weight_matrix: list[list[float]] = [[0.0 for _ in range(value)] for _ in range(data[index+1])]
+            weight_matrix: list[list[float]] = [
+                [0.0 for _ in range(value)] for _ in range(data[index+1])]
 
             threshold: list[float] = [0.0 for _ in range(data[index+1])]
 
@@ -37,9 +38,10 @@ def init_threshold_and_weights(patrons: list[Patron], layerValues: list[int]) ->
             threshold_list.append(threshold)
 
         return {f"pesos": weights, f"umbrales": threshold_list}
-    
+
     except Exception as error:
-        print(error, 'error')
+        print(error, 'SOY EL ERROR 😍')
+        raise Exception(error)
 
 
 if __name__ == '__main__':
