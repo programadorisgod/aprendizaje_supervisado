@@ -14,12 +14,7 @@ def refactor_data_set(patrons: list[Patron]):
         'duras': 0
     }
 
-    dict = {
-        'baja': 0,
-        'media':1,
-        'alta':2,
-        'propiedad':1,
-        'alquiler': 0,
+    patrons_to_binary = {
         'si': 1,
         'no': 0,
         'joven': 0,
@@ -40,7 +35,7 @@ def refactor_data_set(patrons: list[Patron]):
 
     for group in all_groups:
         print(group)
-        inputs = [dict.get(group[0]),dict.get(group[1]),dict.get(group[2])]
+        inputs = [patrons_to_binary.get(group[0]),patrons_to_binary.get(group[1]),patrons_to_binary.get(group[2])]
         binary_groups.append([inputs, [ result_to_binary.get(group[3], 0)] ])
 
     return binary_groups
