@@ -1,5 +1,6 @@
 from src.adapters.utils.back_propaging.init_threshold_and_weights import init_threshold_and_weights
 from src.adapters.utils.back_propaging.save_neural_configuration import save_neural_configuration
+from src.adapters.utils.back_propaging.refactor_data_set import refactor_data_set
 import os
 from fastapi.responses import FileResponse
 from fastapi.responses import Response
@@ -29,3 +30,12 @@ class Backpropagation_use_case:
 
         except:
             raise Exception('Error getting json')
+        
+    def get_vales_lettering(self):
+        try:
+            patrons = self.repository.get_patrons()
+            result = refactor_data_set(patrons)
+            return result
+        except Exception as error:
+            raise Exception(f"Error refactor data set: ${error}")
+        

@@ -34,3 +34,12 @@ class Controller_backpropagation:
         except Exception as error:
             raise HTTPException(
                 status_code=500, detail=f"Internal server error {str(error)}")
+        
+    def get_values_lettering(self):
+        try:
+            result = self.usecase_backpropagation.get_vales_lettering()
+            return result
+        except Exception as error:
+            raise HTTPException(
+                status_code=500, detail=f"Internal server error {str(error)}")
+            

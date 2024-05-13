@@ -10,8 +10,6 @@ def counting_input_output_and_patterns(patrons: list[Patron]) -> list:
     current_letter = None
     first_patron = patrons[0]
 
-    
-
     for key, value in first_patron.items():
         if key.lower() != '_id':
             headers.append(key.lower())
@@ -21,7 +19,6 @@ def counting_input_output_and_patterns(patrons: list[Patron]) -> list:
         headers[1] = 'x2'
         headers[2] = 'x3'
         headers[3] = 'yd1'
-
     
     for header in headers:
 
@@ -32,6 +29,5 @@ def counting_input_output_and_patterns(patrons: list[Patron]) -> list:
             n += 1
 
     input_output_patrons.append([m, n, len(patrons)])
-        
-        
+
     return input_output_patrons

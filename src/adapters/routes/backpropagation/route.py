@@ -21,4 +21,9 @@ def create_router_backpropagation(controller_backpropagation):
     @router.get(f"{BASE_URL}/json", tags=['Backpropagation'])
     async def get_json():
         return controller_backpropagation.get_json()
+    
+    @router.get(f"{BASE_URL}/lettering", tags=['Backpropagation'])
+    async def get_values_letternig():
+        return controller_backpropagation.get_values_lettering()
+    
     return router
