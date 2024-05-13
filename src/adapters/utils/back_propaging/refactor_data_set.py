@@ -32,7 +32,6 @@ def refactor_data_set(patrons: list[Patron]):
 
 
     for group in all_groups:
-        print(group)
         inputs = [patrons_to_binary.get(group[0]),patrons_to_binary.get(group[1]),patrons_to_binary.get(group[2])]
         binary_groups.append([inputs, [ result_to_binary.get(group[3], 0)] ])
 
