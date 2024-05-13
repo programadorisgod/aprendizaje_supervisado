@@ -7,7 +7,6 @@ async def read_file(file: UploadFile):
         content = content.decode('utf-8')
         lines = content.split('\n')
         headers = lines[0].strip().split(' ')
-        print(headers)
         patterns = []
 
         for idx, line in enumerate(lines):
@@ -19,7 +18,6 @@ async def read_file(file: UploadFile):
                  linea
                 """
                 parts = line.strip().split(' ')
-                print(parts, 'parts')
 
                 pattern = {}
                 """

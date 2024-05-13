@@ -29,8 +29,12 @@ class Repository_error_correction:
         for doc in cursor:
             doc['_id'] = str(doc['_id'])
             for key, value in doc.items():
-                if isinstance(value, str) and value.isdigit():
-                    doc[key] = int(value)
+                if key != '_id':
+                    if isinstance(value, str):
+                        if value.isdigit():
+                            doc[key] = int(value)
+                        elif '.' in value:
+                            doc[key] = float(value)
             result.append(doc)
 
         if len(result) == 0:

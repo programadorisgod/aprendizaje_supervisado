@@ -50,7 +50,6 @@ class Error_correction_use_case():
     def get_patrons(self):
         patrons: list[Patron] | Exception = self.repository.get_patrons()
         result: list = couting_input_output(patrons)
-
         return result
 
     def get_threshold_and_weights(self) -> list:
