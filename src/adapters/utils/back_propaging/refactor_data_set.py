@@ -8,8 +8,6 @@ def refactor_data_set(patrons: list[Patron]):
     binary_groups = []
 
     result_to_binary = {
-        'concedido': 1,
-        'denegado': 0,
         'blandas': 1,
         'duras': 0
     }
